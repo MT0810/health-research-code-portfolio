@@ -2,9 +2,9 @@ clear all
 set more off
 use "/Users/wangmengting/Desktop/global_trial.dta", clear
 
-gen AstraZeneca_flag = regexm(lower(申办者), "astrazeneca")
+gen AstraZeneca_flag = regexm(lower(申办者), "pfizer")
 gen china_flag = regexm(lower(国家地区), "china")
-keep if AstraZeneca_flag & china_flag
+keep if pfizer_flag & china_flag
 count
 
 gen 开始日期_数 = date(开始日期, "YMD")
@@ -22,4 +22,4 @@ collapse (sum) 试验数, by(开始年份 状态变量名)
 
 reshape wide 试验数, i(开始年份) j(状态变量名) string
 
-export excel using AstraZeneca_trial_status_by_year.xlsx, firstrow(variables) replace
+export excel using pfizer_trial_status_by_year.xlsx, firstrow(variables) replace
