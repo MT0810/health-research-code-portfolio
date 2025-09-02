@@ -2,9 +2,9 @@ clear all
 set more off
 use "/Users/wangmengting/Desktop/global_trial.dta", clear
 
-gen astrazeneca_flag = regexm(lower(申办者), "astrazeneca")
+gen astrazeneca_flag = regexm(lower(申办者), "pfizer")
 gen china_flag = regexm(lower(国家地区), "china")
-keep if astrazeneca_flag & china_flag
+keep if pfizer_flag & china_flag
 
 gen 分期标准 = lower(strtrim(试验分期))
 
@@ -36,4 +36,4 @@ rename 试验数2 Phase_2
 rename 试验数3 Phase_3
 rename 试验数4 Phase_4
 
-export excel using astrazeneca_china_trial_counts_cleaned_final.xlsx, firstrow(variables) replace
+export excel using pfizer_china_trial_counts_cleaned_final.xlsx, firstrow(variables) replace
